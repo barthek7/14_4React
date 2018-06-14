@@ -40,7 +40,7 @@ var Movie = React.createClass({
             React.createElement(MovieTitle, {movie_title: this.props.title}),
             React.createElement(MovieDescription, {movie_desc: this.props.description}),
             React.createElement(MoviePoster, {movie_poster: this.props.poster}))
-        )
+        );
     }
     });
 
@@ -54,7 +54,7 @@ var MovieTitle = React.createClass({
     render: function(){
         return (
             React.createElement('h2', {}, this.props.movie_title)
-        )
+        );
     }
 
 });
@@ -65,7 +65,7 @@ var MovieDescription = React.createClass({
     },
 
     render: function(){
-        return React.createElement('p', {}, this.props.movie_desc)
+        return React.createElement('p', {}, this.props.movie_desc);
     }
 });
 
@@ -75,7 +75,7 @@ var MoviePoster = React.createClass({
     },
 
     render: function() {
-        return React.createElement('img', {src: this.props.movie_poster})
+        return React.createElement('img', {src: this.props.movie_poster});
     }
 });
 
@@ -91,9 +91,9 @@ var MoviesList = React.createClass({
             return React.createElement(Movie,{
                 key: Math.random(),
                 movie_id: movie.id,
-                title: React.createElement(MovieTitle, {movie_title: movie.title}).props.movie_title,
-                description: React.createElement(MovieDescription, {movie_desc: movie.desc}).props.movie_desc,
-                poster: React.createElement(MoviePoster, {movie_poster: movie.poster}).props.movie_poster
+                title: movie.title,
+                description: movie.desc,
+                poster: movie.poster
             });
             });
 
@@ -101,7 +101,7 @@ var MoviesList = React.createClass({
             React.createElement('div', {},
                 React.createElement('h1', {}, 'Films List'),
                 React.createElement('ul', {}, moviesList))
-        )
+        );
     }
 
 });
