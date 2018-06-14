@@ -30,16 +30,16 @@ var Movie = React.createClass({
 
     propTypes: {
         movie_id: React.PropTypes.number.isRequired,
-        movie_title: React.PropTypes.instanceOf(MovieTitle).isRequired,
-        movie_desc: React.PropTypes.instanceOf(MovieDescription).isRequired,
-        movie_poster: React.PropTypes.instanceOf(MoviePoster).isRequired
+        title: React.PropTypes.string.isRequired,
+        description: React.PropTypes.string.isRequired,
+        poster: React.PropTypes.string.isRequired
     },
     render: function(){
         return (
             React.createElement('li', {key: this.props.movie_id},
-            React.createElement(MovieTitle, {movie_title: this.props.movie_title}),
-            React.createElement(MovieDescription, {movie_desc: this.props.movie_desc}),
-            React.createElement(MoviePoster, {movie_poster: this.props.movie_poster}))
+            React.createElement(MovieTitle, {movie_title: this.props.title}),
+            React.createElement(MovieDescription, {movie_desc: this.props.description}),
+            React.createElement(MoviePoster, {movie_poster: this.props.poster}))
         )
     }
     });
@@ -48,7 +48,7 @@ var Movie = React.createClass({
 
 var MovieTitle = React.createClass({
     propTypes: {
-        movie_title: React.PropTypes.object.isRequired,
+        movie_title: React.PropTypes.string.isRequired,
     },
 
     render: function(){
@@ -61,7 +61,7 @@ var MovieTitle = React.createClass({
 
 var MovieDescription = React.createClass({
     propTypes: {
-        movie_desc: React.PropTypes.object.isRequired,
+        movie_desc: React.PropTypes.string.isRequired,
     },
 
     render: function(){
@@ -71,7 +71,7 @@ var MovieDescription = React.createClass({
 
 var MoviePoster = React.createClass({
     propTypes: {
-        movie_poster: React.PropTypes.object.isRequired,
+        movie_poster: React.PropTypes.string.isRequired,
     },
 
     render: function() {
@@ -89,10 +89,11 @@ var MoviesList = React.createClass({
     render: function(){
         var moviesList = this.props.movies.map(function(movie){
             return React.createElement(Movie,{
+                key: Math.random(),
                 movie_id: movie.id,
-                movie_title: React.createElement(MovieTitle, {movie_title: movie.title}),
-                movie_desc: React.createElement(MovieDescription, {movie_desc: movie.desc}),
-                movie_poster: React.createElement(MoviePoster, {movie_poster: movie.poster})
+                title: React.createElement(MovieTitle, {movie_title: movie.title}).props.movie_title,
+                description: React.createElement(MovieDescription, {movie_desc: movie.desc}).props.movie_desc,
+                poster: React.createElement(MoviePoster, {movie_poster: movie.poster}).props.movie_poster
             });
             });
 
